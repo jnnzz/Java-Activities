@@ -22,6 +22,8 @@ class Main2DpartialPART5
 {
     static Student[][] studArr;
     static String[] sections;
+    static String[][] tempArrName;
+    static double[][] tempArrGrades;
 	public static void main(String[] args) {
 	    
 
@@ -42,7 +44,6 @@ class Main2DpartialPART5
 	static void displayHardCode(){
 	   
 	   //initialize
-	   Student[] tempArr = new Student[6];
 	   studArr = new Student[2][3];
 	   sections = new String[] {"BSIT 1B", "BSIT 1C"};
 	   
@@ -136,30 +137,54 @@ class Main2DpartialPART5
 	}
 	static void displayOverall(){
 	    
-	   System.out.println();
-	   for(int i=0; i<studArr.length; i++){
-	       for(int j=0; j<studArr[i].length; j++){
-	           Student[] tempArr = studArr[i][j].name; 
-	       }
-	   }
-	   
-	    for(int i=0; i<studArr.length; i++){
-	        for(int j=0; j<studArr[i].length+1; j++){
-	            for(int k=j+1; k<studArr[i].length; k++){
-	                if(studArr[i][j].getAverage()<studArr[i][k].getAverage()){
-	                    Student temp = studArr[i][j];
-	                    studArr[i][j] = studArr[i][k];
-	                    studArr[i][k] = temp;
-	                }
-	            }
-	        }
-	    }
-	    for(int i=0; i<studArr.length; i++){
-	        for(int j=0; j<studArr[0].length; j++){
-	            System.out.printf("                       %-6s = %.2f\n",studArr[i][j].name,studArr[i][j].getAverage());
-	        }
-	    }
+	  int allStud = studArr.length * studArr[0].length;
+	  Student[] overAll = new Student[allStud];
+	  int index = 0;
+	  
+	  for(int i=0; i<studArr.length; i++){
+	      for(int j=0; j<studArr[0].length; j++){
+	          overAll[index++] = studArr[i][j];
+	      }
+	      System.out.println();
+	  }
+	  for(int i=0; i<overAll.length-1; i++){
+	      for(int j=i+1; j <overAll.length; j++){
+	          if(overAll[i].getAverage()<overAll[j].getAverage());
+	          Student tempo = overAll[i];
+	          overAll[i] = overAll[j];
+	          overAll[j] = tempo;
+	      }
+	  }
+	  
+	  for(int i=0; i<overAll.length; i++){
+	      
+	          System.out.printf(" %-6s  %.2f", overAll[i].name, overAll[i].getAverage());
+	      
+	  }
+// 	   int totalStud = studArr.length * studArr[0].length;
+// 	   Student[] list = new Student[totalStud];
+// 	   int index =0;
+	    
+// 	   for(int i = 0; i < studArr.length; i++){
+// 	       for(int j = 0; j < studArr[0].length; j++){
+// 	           list[index++] = studArr[i][j];
+// 	       }
+// 	       System.out.println();
+// 	   }
+//   	    for(int i=0; i < list.length -1; i++){
+//   	        for(int j= i + 1; j < list.length; j++){
+//                 if(list[i].getAverage() < list[j].getAverage()){
+//                     Student temp = list[i];
+//                     list[i] = list[j];
+//                     list[j] = temp;
+//                 }
+
+//             }
+// 	    }  
+	    
+// 	   for(int i = 0; i < list.length; i++){
+//             System.out.printf("                       %-6s = %.2f\n",list[i].name,list[i].getAverage());
+// 	   }
+// 	}
 	}
-	
-	
 }
